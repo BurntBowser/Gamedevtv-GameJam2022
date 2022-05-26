@@ -1,0 +1,9 @@
+Main menu
+select map
+load map
+all enemies are preloaded and queued to spawn based on the map, wait for input before starting.
+push button on ui
+instantiate placeable ally that has a radius that searches for collisions and turns red when cant be placed
+once placed, turn isPlaced flag on, start targeting (default closest to destination)
+when clicked again, open new ui of selected unit and new buttons (upgrades, change target)
+	upgrades change a flag on the tower, and enables child objects to show a difference
