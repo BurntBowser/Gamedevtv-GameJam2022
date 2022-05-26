@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
+    
     public void PurchaseDefaultAlly()
     {
         Debug.Log("Purchased Default Ally");

@@ -1,0 +1,5 @@
+Click button on shop
+activate selected prefab, move with cursor and change color when placeable/ not placeable.
+on click, check if was placeable or not placeable
+when placeable: put object down, activate targetting, deduct currency.
+when not placeabe: do nothing, keep all current states, maybe give sound feedback if not placeable.
