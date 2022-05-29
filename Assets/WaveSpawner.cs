@@ -24,11 +24,22 @@ public class WaveSpawner : MonoBehaviour
         {
             StartWaves();
         }
+        else if (pressedStart != true)
+        {
+            PauseWaves();
+        }
+        waveCountDownText.text = Mathf.Ceil(countdown).ToString();
+        
     }
 
-    public void PushStart(bool currentState)
+    void PauseWaves()
     {
-        pressedStart = currentState;
+        countdown = timeBetweenWaves;
+    }
+
+    public void PushStart()
+    {
+        pressedStart =!pressedStart;
 
     }
 
@@ -40,7 +51,6 @@ public class WaveSpawner : MonoBehaviour
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
         }
-        waveCountDownText.text = Mathf.Ceil(countdown).ToString();
         countdown -= Time.deltaTime;
         
     }

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1089064086301591691}
   - component: {fileID: 1089064086301591681}
   m_Layer: 0
-  m_Name: EnemyPlaceholder
+  m_Name: PathDrawer
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089064086301591688}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25, y: 1, z: 25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -136,11 +136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPos: {x: 0, y: 0, z: 0}
-  waypoints:
-  - {x: -15, y: 0, z: -25}
-  - {x: 0, y: 0, z: 0}
-  - {x: 15, y: 0, z: 25}
-  - {x: 25, y: 0, z: -25}
+  waypoint: {x: 0, y: 0, z: 0}
+  checkStatus: 0
 --- !u!120 &1089064086301591681
 LineRenderer:
   m_ObjectHideFlags: 0
