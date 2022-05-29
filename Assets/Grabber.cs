@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 
 public class Grabber : MonoBehaviour {
 
     private GameObject selectedObject;
+    public bool isPickedUp = false;
+
 
     private void Update() {
         if (Input.GetMouseButtonDown(0)) {
@@ -15,30 +18,42 @@ public class Grabber : MonoBehaviour {
                     }
 
                     selectedObject = hit.collider.gameObject;
+                    
                     Cursor.visible = false;
                 }
             } else {
+                selectedObject.GetComponent<BoxCollider>().enabled = false;
+                RaycastHit hit2 =CastRay();
+                if (hit2.collider !=null && hit2.collider.tag == "Buildable")
+                {
                 Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
                 Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
-                selectedObject.transform.position = new Vector3(worldPosition.x, 0f, worldPosition.z);
+                selectedObject.transform.position = new Vector3(worldPosition.x, hit2.point.y, worldPosition.z);
 
+                isPickedUp = false;
+                selectedObject.GetComponent<BoxCollider>().enabled = true;
                 selectedObject = null;
                 Cursor.visible = true;
+                
+                }
+
             }
         }
 
         if(selectedObject != null) {
+            isPickedUp = true;
+            selectedObject.GetComponent<BoxCollider>().enabled = false;
+            RaycastHit hit3 =CastRay();
+            if (hit3.collider !=null && hit3.collider.tag == "Buildable"){
             Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
-            selectedObject.transform.position = new Vector3(worldPosition.x, .25f, worldPosition.z);
-
-            if (Input.GetMouseButtonDown(1)) {
-                selectedObject.transform.rotation = Quaternion.Euler(new Vector3(
-                    selectedObject.transform.rotation.eulerAngles.x,
-                    selectedObject.transform.rotation.eulerAngles.y + 90f,
-                    selectedObject.transform.rotation.eulerAngles.z));
+            selectedObject.transform.position = new Vector3(worldPosition.x,
+                hit3.point.y+0.25f, worldPosition.z);
+            selectedObject.GetComponent<BoxCollider>().enabled = true;
             }
+            
         }
+
     }
 
     private RaycastHit CastRay() {
@@ -54,7 +69,7 @@ public class Grabber : MonoBehaviour {
         Vector3 worldMousePosNear = Camera.main.ScreenToWorldPoint(screenMousePosNear);
         RaycastHit hit;
         Physics.Raycast(worldMousePosNear, worldMousePosFar - worldMousePosNear, out hit);
-
         return hit;
     }
+
 }

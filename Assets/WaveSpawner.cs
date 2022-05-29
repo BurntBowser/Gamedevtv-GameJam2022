@@ -14,22 +14,37 @@ public class WaveSpawner : MonoBehaviour
     public float timeBetweenWaves = 5f;
     private float countdown = 3f;
 
-    public Text waveCountDownText;
-
+    public TMPro.TextMeshProUGUI waveCountDownText;
     private int waveNumber = 1;
-
-    void Update() 
+    bool pressedStart =false;
+    
+    void Update()
     {
-        if (countdown <=0f)
+        if(pressedStart == true)
+        {
+            StartWaves();
+        }
+    }
+
+    public void PushStart(bool currentState)
+    {
+        pressedStart = currentState;
+
+    }
+
+    void StartWaves()
+    {
+        
+        if (countdown <= 0f)
         {
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
         }
-
-        waveCountDownText.text= Mathf.Ceil(countdown).ToString();
-
-        countdown -=Time.deltaTime;
+        waveCountDownText.text = Mathf.Ceil(countdown).ToString();
+        countdown -= Time.deltaTime;
+        
     }
+
 
     IEnumerator SpawnWave()
     {

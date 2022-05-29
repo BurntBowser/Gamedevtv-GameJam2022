@@ -1,0 +1,3 @@
+ideas to solve placement issue:
+1. Make placement areas that are clearly marked. use colliders to validate area, if clicked collider, place down object, activate ai scripts
+2. 

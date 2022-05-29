@@ -135,8 +135,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37416e0f5c20e9246a741a6f272e034c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPos: {x: -25, y: 1, z: 25}
-  target: {fileID: 0}
+  startPos: {x: 0, y: 0, z: 0}
+  waypoints:
+  - {x: -15, y: 0, z: -25}
+  - {x: 0, y: 0, z: 0}
+  - {x: 15, y: 0, z: 25}
+  - {x: 25, y: 0, z: -25}
 --- !u!120 &1089064086301591681
 LineRenderer:
   m_ObjectHideFlags: 0

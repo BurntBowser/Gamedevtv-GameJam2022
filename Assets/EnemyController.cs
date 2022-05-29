@@ -9,13 +9,16 @@ public class EnemyController : MonoBehaviour
     [SerializeField] Vector3 startPos;
     NavMeshAgent agent;
     LineRenderer line;
-    [SerializeField] Transform target;
-
+    [SerializeField] Vector3 waypoint;
+    public bool checkStatus = false;
+    
 
     void Awake() 
     {
         agent = GetComponent<NavMeshAgent>();
         line = GetComponent<LineRenderer>();
+        //agent.isStopped = true;
+        //add scene index checks to load proper coordinates
     }
 
     void OnEnable() 
@@ -26,16 +29,32 @@ public class EnemyController : MonoBehaviour
 
     void Update() 
     {
-        //redraw path if changed
+        DrawPath(agent.path);
+        CanReachPosition(transform.position);
+    }
+
+    public void CanReachPosition(Vector3 position)
+    {
+        agent.CalculatePath(position, agent.path);
+        if (agent.path.status == NavMeshPathStatus.PathComplete)
+        {
+            checkStatus = true;
+            return;
+        }
+        else
+        {
+            checkStatus = false;
+            //destroy towers
+        }
     }
 
     IEnumerator getPath()
     {
+        
         line.SetPosition(0,transform.position);        
-        agent.SetDestination(target.position);
+        agent.SetDestination(waypoint);       
         yield return new WaitForEndOfFrame();
-
-        DrawPath(agent.path);
+        
     }
 
     void DrawPath(NavMeshPath path)
