@@ -4,6 +4,7 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
     PlacementHandler placement;
+    PlayerStats stats;
     public GameObject currentUnit;
     public GameObject Unit;
 
@@ -11,11 +12,12 @@ public class Shop : MonoBehaviour
     void Start() 
     {
         placement = FindObjectOfType<PlacementHandler>();
+        stats = FindObjectOfType<PlayerStats>();
     }
 
     public void SelectDefaultAlly()
     {
-        if(placement.DefaultAlly.isLocked != true)
+        if(placement.DefaultAlly.isLocked != true && stats.Money >= placement.DefaultAlly.cost)
         {
         Debug.Log("Selected Default Ally");
         placement.SpawnObject(placement.DefaultAlly);
@@ -28,7 +30,7 @@ public class Shop : MonoBehaviour
 
     public void SelectLee()
     {
-        if(placement.Lee.isLocked != true)
+        if(placement.Lee.isLocked != true && stats.Money >= placement.Lee.cost)
         {
         Debug.Log("Selected Lee");
         placement.SpawnObject(placement.Lee);
@@ -40,7 +42,7 @@ public class Shop : MonoBehaviour
     }
     public void SelectBigGuy()
     {
-        if(placement.BigGuy.isLocked != true)
+        if(placement.BigGuy.isLocked != true && stats.Money >= placement.BigGuy.cost)
         {
         Debug.Log("Selected Big Guy");
         placement.SpawnObject(placement.BigGuy);
@@ -52,7 +54,7 @@ public class Shop : MonoBehaviour
     }
     public void SelectGerad()
     {
-        if(placement.Gared.isLocked != true)
+        if(placement.Gared.isLocked != true && stats.Money >= placement.Gared.cost)
         {
         Debug.Log("Selected Gerad");
         placement.SpawnObject(placement.Gared);
@@ -64,7 +66,7 @@ public class Shop : MonoBehaviour
     }
     public void SelectFifthOption()
     {
-        if(placement.Thomas.isLocked != true)
+        if(placement.Thomas.isLocked != true && stats.Money >= placement.Thomas.cost)
         {
         Debug.Log("Selected Fifth Option");
         placement.SpawnObject(placement.Thomas);

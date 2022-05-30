@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh280630
+  m_Name: pb_Mesh505574
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -965,12 +965,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyDefault: {fileID: 6750741628407402628, guid: ad3ceb23f65b6244ab4aa26c64df4458, type: 3}
-  enemyBig: {fileID: 0}
-  enemyMedium: {fileID: 0}
-  enemyFast: {fileID: 0}
+  enemyBig: {fileID: 3765416871659734740, guid: 774b51cd5ba99224f8572fa686154676, type: 3}
+  enemyMedium: {fileID: 3594021035310762500, guid: bd54d7b23622cc54f92c104b048c59c9, type: 3}
+  enemyFast: {fileID: 497014683121300538, guid: 93eee9c3dfbb98742a6403057a1d7440, type: 3}
   spawnPoint: {fileID: 907048638}
   enemyPool: {fileID: 0}
-  timeBetweenWaves: 5
   waveCountDownText: {fileID: 1715804628}
 --- !u!4 &92303121
 Transform:
@@ -985,7 +984,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &178420405
 GameObject:
@@ -1018,7 +1017,7 @@ Transform:
   - {fileID: 907048638}
   - {fileID: 811526510}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &216263063
 GameObject:
@@ -3028,7 +3027,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &412542629
 GameObject:
@@ -4916,7 +4915,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &431952589
 GameObject:
@@ -6282,22 +6281,22 @@ MonoBehaviour:
   Lee:
     prefab: {fileID: 1399176672662326126, guid: 0ba269e7de53fd34a88a09f29c75d13f, type: 3}
     damage: 1
-    cost: 0
+    cost: 10
     isLocked: 0
   BigGuy:
     prefab: {fileID: 3900533538881533771, guid: 670e4a1b137fdcd4db1a37c3e1137935, type: 3}
-    damage: 4
-    cost: 0
+    damage: 6
+    cost: 30
     isLocked: 0
   Gared:
     prefab: {fileID: 5134832676199921394, guid: 0b0e9cbb60ddc79419f1e5845b066d28, type: 3}
     damage: 3
-    cost: 0
+    cost: 50
     isLocked: 0
   Thomas:
     prefab: {fileID: 6356364066305271151, guid: 22053095f79cb124b8fb58b858c52269, type: 3}
     damage: 3
-    cost: 0
+    cost: 40
     isLocked: 0
   currentCost: 0
 --- !u!4 &889976694
@@ -7221,7 +7220,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4b6ace0ea2e815646ab9e3202a6bc2b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b995e4f3a4070fa48999310c3fff213c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7271,11 +7270,12 @@ MonoBehaviour:
   Money: 0
   Lives: 100
   startLives: 1
-  startMoney: 400
+  startMoney: 30
   livesText: {fileID: 1558667951}
   moneyText: {fileID: 1058558424}
   MasterUI: {fileID: 1271462038}
   gameOverUI: {fileID: 2054732832}
+  winUI: {fileID: 0}
 --- !u!4 &1277519111
 Transform:
   m_ObjectHideFlags: 0
@@ -7428,7 +7428,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4b6ace0ea2e815646ab9e3202a6bc2b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9f5d8213d64c3e74fb46fed3b10a7c41, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8082,7 +8082,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4b6ace0ea2e815646ab9e3202a6bc2b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 28cf8448e933bed4799a6fe64fe8a9e9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8881,7 +8881,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1790428545
 Mesh:
@@ -8889,7 +8889,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh280556
+  m_Name: pb_Mesh505360
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9053,7 +9053,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh280340
+  m_Name: pb_Mesh504730
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9912,7 +9912,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh280260
+  m_Name: pb_Mesh504416
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10310,7 +10310,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh280246
+  m_Name: pb_Mesh504394
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11144,7 +11144,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4b6ace0ea2e815646ab9e3202a6bc2b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 280f28536da278f46a3f534cb05dae74, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11656,7 +11656,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5474739689472901477, guid: 22382f8c18880d847a95a498933c62e1, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5474739689472901477, guid: 22382f8c18880d847a95a498933c62e1, type: 3}
       propertyPath: m_LocalPosition.x

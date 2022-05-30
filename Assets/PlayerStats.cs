@@ -14,6 +14,7 @@ public class PlayerStats : MonoBehaviour
     public TMPro.TextMeshProUGUI moneyText;
     public GameObject MasterUI;
     public GameObject gameOverUI;
+    public GameObject winUI;
 
     void Start()
     {
@@ -31,6 +32,12 @@ public class PlayerStats : MonoBehaviour
             MasterUI.SetActive(false);
             gameOverUI.SetActive(true);
         }
+    }
+
+    public void WinGame()
+    {
+        MasterUI.SetActive(false);
+        winUI.SetActive(true);
     }
 
     public void PayUp(int cost)

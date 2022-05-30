@@ -15,53 +15,54 @@ public class WaveSpawner : MonoBehaviour
     public Transform spawnPoint;
     public GameObject enemyPool;
 
-    public float timeBetweenWaves = 5f;
-    private float countdown = 3f;
-
     public TMPro.TextMeshProUGUI waveCountDownText;
     private int waveNumber = 1;
     bool pressedStart =false;
+    PlayerStats stats;
     
     private void Start() 
     {
+        stats = FindObjectOfType<PlayerStats>();
         enemyPool = new GameObject("Enemy Pool");
+        waveCountDownText.text = waveNumber.ToString();
+        waveCountDownText.color = Color.red;
     }
     
     void Update()
     {
-        if(pressedStart == true)
+        if(pressedStart == true && enemyPool.transform.childCount<=0 && waveNumber <11)
         {
             StartWaves(waveNumber);
         }
         else if (pressedStart != true)
         {
-            PauseWaves();
+            return;
         }
-        waveCountDownText.text = Mathf.Ceil(countdown).ToString();
-        
-    }
 
-    void PauseWaves()
-    {
-        countdown = timeBetweenWaves;
+        if(waveNumber>=11)
+        {
+            stats.WinGame();
+        }
+        waveCountDownText.text = waveNumber.ToString();
+        waveCountDownText.color = Color.white;
+        
     }
 
     public void PushStart()
     {
         pressedStart =!pressedStart;
+        waveCountDownText.color = Color.red;
 
     }
 
     void StartWaves(int wave)
     {
         
-        if (countdown <= 0f)
+        if (wave <11)
         {
             SpawnWave(wave);
-            countdown = timeBetweenWaves;
             waveNumber++;
         }
-        countdown -= Time.deltaTime;
         
     }
 
@@ -71,28 +72,48 @@ public class WaveSpawner : MonoBehaviour
         switch (wave)
         {
             case 1:
-                StartCoroutine(SpawnEnemy(enemyDefault, 5, 1f));
+                StartCoroutine(SpawnEnemy(enemyDefault, 3, 2f));
                 break;
             case 2:
-                StartCoroutine(SpawnEnemy(enemyDefault, 5, 0.5f));
+                StartCoroutine(SpawnEnemy(enemyDefault, 5, 1f));
                 break;
             case 3:
-                StartCoroutine(SpawnEnemy(enemyDefault, 3, 0.2f));
+                StartCoroutine(SpawnEnemy(enemyDefault, 5, 0.5f));
                 break;
             case 4:
-                StartCoroutine(SpawnEnemy(enemyDefault, 5, 1f));
+                StartCoroutine(SpawnEnemy(enemyDefault, 10, 1f));
                 break;
             case 5:
-                StartCoroutine(SpawnEnemy(enemyDefault, 5, 1f));
+                StartCoroutine(SpawnEnemy(enemyDefault, 10, 0.5f));
+                StartCoroutine(SpawnEnemy(enemyMedium, 2, 0.5f));
                 break;
             case 6:
-                StartCoroutine(SpawnEnemy(enemyDefault, 5, 1f));
+                StartCoroutine(SpawnEnemy(enemyDefault, 15, 1f));
+                StartCoroutine(SpawnEnemy(enemyMedium, 3, 0.8f));
                 break;
             case 7:
-                StartCoroutine(SpawnEnemy(enemyDefault, 5, 1f));
+                StartCoroutine(SpawnEnemy(enemyDefault, 13, 0.7f));
+                StartCoroutine(SpawnEnemy(enemyMedium, 6, 1f));
+                StartCoroutine(SpawnEnemy(enemyFast, 4, 2f));
                 break;
             case 8:
+                StartCoroutine(SpawnEnemy(enemyDefault, 10, 1f));
+                StartCoroutine(SpawnEnemy(enemyMedium, 8, 1f));
+                StartCoroutine(SpawnEnemy(enemyFast, 5, 2f));
+                break;
+            case 9:
+                StartCoroutine(SpawnEnemy(enemyDefault, 12, 1f));
+                StartCoroutine(SpawnEnemy(enemyMedium, 10, 1f));
+                StartCoroutine(SpawnEnemy(enemyFast, 7, 2f));
+                StartCoroutine(SpawnEnemy(enemyBig, 1, 5f));
+                break;
+            case 10:
                 StartCoroutine(SpawnEnemy(enemyDefault, 5, 1f));
+                StartCoroutine(SpawnEnemy(enemyMedium, 6, 1f));
+                StartCoroutine(SpawnEnemy(enemyFast, 12, 2f));
+                StartCoroutine(SpawnEnemy(enemyBig, 2, 5f));
+                break;
+            case 11:
                 break;
         }
     }
