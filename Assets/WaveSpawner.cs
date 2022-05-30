@@ -16,7 +16,7 @@ public class WaveSpawner : MonoBehaviour
     public GameObject enemyPool;
 
     public TMPro.TextMeshProUGUI waveCountDownText;
-    private int waveNumber = 1;
+    public int waveNumber = 1;
     bool pressedStart =false;
     PlayerStats stats;
     
@@ -30,7 +30,7 @@ public class WaveSpawner : MonoBehaviour
     
     void Update()
     {
-        if(pressedStart == true && enemyPool.transform.childCount<=0 && waveNumber <11)
+        if(pressedStart == true && enemyPool.transform.childCount<=0 && waveNumber <12)
         {
             StartWaves(waveNumber);
         }
@@ -39,7 +39,7 @@ public class WaveSpawner : MonoBehaviour
             return;
         }
 
-        if(waveNumber>=11)
+        if(waveNumber>=12)
         {
             stats.WinGame();
         }
@@ -111,9 +111,11 @@ public class WaveSpawner : MonoBehaviour
                 StartCoroutine(SpawnEnemy(enemyDefault, 5, 1f));
                 StartCoroutine(SpawnEnemy(enemyMedium, 6, 1f));
                 StartCoroutine(SpawnEnemy(enemyFast, 12, 2f));
-                StartCoroutine(SpawnEnemy(enemyBig, 2, 5f));
+                StartCoroutine(SpawnEnemy(enemyBig, 2, 3f));
                 break;
             case 11:
+                break;
+            case 12:
                 break;
         }
     }

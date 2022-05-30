@@ -15,6 +15,8 @@ public class PlayerStats : MonoBehaviour
     public GameObject MasterUI;
     public GameObject gameOverUI;
     public GameObject winUI;
+    public GameObject pauseUI;
+    public bool isPaused = false;
 
     void Start()
     {
@@ -24,6 +26,7 @@ public class PlayerStats : MonoBehaviour
 
     void Update()
     {
+        
         livesText.text = Lives.ToString();
         moneyText.text =  Money.ToString();
 
@@ -31,6 +34,26 @@ public class PlayerStats : MonoBehaviour
         {
             MasterUI.SetActive(false);
             gameOverUI.SetActive(true);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            isPaused = !isPaused;
+            if(isPaused ==true)
+            {
+                MasterUI.SetActive(false);
+                pauseUI.SetActive(true);
+                Time.timeScale=0f;
+                return;
+            }
+            else
+            {
+                MasterUI.SetActive(true);
+                pauseUI.SetActive(false);
+                Time.timeScale=1f;
+                return;
+            }
+            
         }
     }
 

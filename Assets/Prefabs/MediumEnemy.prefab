@@ -1750,9 +1750,9 @@ MonoBehaviour:
   endPos: {fileID: 0}
   checkStatus: 0
   isStopped: 0
-  TotalHealth: 20
-  reward: 4
-  lifeLost: 5
+  TotalHealth: 40
+  reward: 9
+  lifeLost: 8
   reachedEnd: 0
 --- !u!1 &3641202733851210505
 GameObject:
