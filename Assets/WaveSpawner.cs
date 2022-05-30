@@ -7,9 +7,13 @@ using UnityEngine.UI;
 public class WaveSpawner : MonoBehaviour
 {
     
-    public Transform enemyPrefab;
+    public GameObject enemyDefault;
+    public GameObject enemyBig;
+    public GameObject enemyMedium;
+    public GameObject enemyFast;
+
     public Transform spawnPoint;
-    public Transform objectPool;
+    public GameObject enemyPool;
 
     public float timeBetweenWaves = 5f;
     private float countdown = 3f;
@@ -18,11 +22,16 @@ public class WaveSpawner : MonoBehaviour
     private int waveNumber = 1;
     bool pressedStart =false;
     
+    private void Start() 
+    {
+        enemyPool = new GameObject("Enemy Pool");
+    }
+    
     void Update()
     {
         if(pressedStart == true)
         {
-            StartWaves();
+            StartWaves(waveNumber);
         }
         else if (pressedStart != true)
         {
@@ -43,33 +52,57 @@ public class WaveSpawner : MonoBehaviour
 
     }
 
-    void StartWaves()
+    void StartWaves(int wave)
     {
         
         if (countdown <= 0f)
         {
-            StartCoroutine(SpawnWave());
+            SpawnWave(wave);
             countdown = timeBetweenWaves;
+            waveNumber++;
         }
         countdown -= Time.deltaTime;
         
     }
 
 
-    IEnumerator SpawnWave()
+    void SpawnWave(int wave)
     {
-        for (int i = 0; i < waveNumber; i++)
+        switch (wave)
         {
-            SpawnEnemy();
-            yield return new WaitForSeconds(0.5f);
+            case 1:
+                StartCoroutine(SpawnEnemy(enemyDefault, 5, 1f));
+                break;
+            case 2:
+                StartCoroutine(SpawnEnemy(enemyDefault, 5, 0.5f));
+                break;
+            case 3:
+                StartCoroutine(SpawnEnemy(enemyDefault, 3, 0.2f));
+                break;
+            case 4:
+                StartCoroutine(SpawnEnemy(enemyDefault, 5, 1f));
+                break;
+            case 5:
+                StartCoroutine(SpawnEnemy(enemyDefault, 5, 1f));
+                break;
+            case 6:
+                StartCoroutine(SpawnEnemy(enemyDefault, 5, 1f));
+                break;
+            case 7:
+                StartCoroutine(SpawnEnemy(enemyDefault, 5, 1f));
+                break;
+            case 8:
+                StartCoroutine(SpawnEnemy(enemyDefault, 5, 1f));
+                break;
         }
-
-
-       waveNumber++;
     }
 
-    void SpawnEnemy()
+    IEnumerator SpawnEnemy(GameObject enemyPreFab, int times, float seconds)
     {
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation, objectPool);
+        for (int i = 0; i < times; i++)
+        {
+            Instantiate(enemyPreFab, spawnPoint.position, spawnPoint.rotation, enemyPool.transform);
+            yield return new WaitForSeconds(seconds);
+        }
     }
 }

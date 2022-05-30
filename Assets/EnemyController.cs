@@ -12,12 +12,17 @@ public class EnemyController : MonoBehaviour
     [SerializeField] GameObject endPos;
     public bool checkStatus = false;
     [SerializeField]  bool isStopped = false;
-    
+    public int TotalHealth = 10;
+    public int reward;
+    public int lifeLost;
+    public bool reachedEnd = false;
+    PlayerStats stats;
 
     void Awake() 
     {
         agent = GetComponent<NavMeshAgent>();
         agent.isStopped = isStopped;
+        stats = FindObjectOfType<PlayerStats>();
     }
 
     void OnEnable() 
@@ -31,7 +36,20 @@ public class EnemyController : MonoBehaviour
     void Update() 
     {
         CanReachPosition(transform.position);
+        if(Vector3.Distance(transform.position,agent.destination)<=1f)
+        {
+            reachedEnd = true;
+            Destroy(gameObject);
+            stats.Lives -=lifeLost;
+        }
+        if(TotalHealth<=0)
+        {
+            Destroy(gameObject);
+        }
+
     }
+
+    
 
     public void CanReachPosition(Vector3 position)
     {
@@ -46,6 +64,12 @@ public class EnemyController : MonoBehaviour
             checkStatus = false;
             //destroy towers
         }
+    }
+
+    private void OnDestroy() 
+    {
+        if(reachedEnd == true){return;}
+        stats.GiveReward(reward);
     }
 
     IEnumerator getPath()

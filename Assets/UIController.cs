@@ -44,7 +44,13 @@ public class UIController : MonoBehaviour
         
     }
 
-    public void OpenInfoPanel()
+    public void OpenInfoPanel(GameObject Ally)
+    {
+        //set icon to matching ally
+        //
+    }
+
+    public void CloseInfoPanel(GameObject Ally)
     {
         Debug.Log("do thing");
     }

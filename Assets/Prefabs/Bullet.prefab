@@ -143,3 +143,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 70
+  radiusOfEffect: 3
+  dealThisDamage: 0
+  flightTime: 3

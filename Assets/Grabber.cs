@@ -1,34 +1,32 @@
 using System;
 using UnityEngine;
 
-public class Grabber : MonoBehaviour {
+public class Grabber : MonoBehaviour 
+{
 
-    private GameObject selectedObject;
+    public GameObject selectedObject;
     public bool isPickedUp = false;
+    RaycastHit hit;
 
-
-    private void Update() {
-        if (Input.GetMouseButtonDown(0)) {
-            if(selectedObject == null) {
-                RaycastHit hit = CastRay();
-
-                if(hit.collider != null) {
-                    if (!hit.collider.CompareTag("drag")) {
-                        return;
-                    }
-
-                    selectedObject = hit.collider.gameObject;
-                    
-                    Cursor.visible = false;
-                }
-            } else {
+    private void Update() 
+    {
+        if (isPickedUp == true) 
+        {            
+            selectedObject = GameObject.FindGameObjectWithTag("placing");
+            
+            if(selectedObject == null) 
+            {
+               return;
+            } 
+            else if(Input.GetMouseButton(0))
+            {
                 selectedObject.GetComponent<BoxCollider>().enabled = false;
-                RaycastHit hit2 =CastRay();
-                if (hit2.collider !=null && hit2.collider.tag == "Buildable")
+                RaycastHit hit = CastRay();
+                if (hit.collider !=null && hit.collider.tag == "Buildable")
                 {
                 Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
                 Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
-                selectedObject.transform.position = new Vector3(worldPosition.x, hit2.point.y, worldPosition.z);
+                selectedObject.transform.position = new Vector3(worldPosition.x, hit.point.y, worldPosition.z);
 
                 isPickedUp = false;
                 selectedObject.GetComponent<BoxCollider>().enabled = true;
@@ -36,27 +34,28 @@ public class Grabber : MonoBehaviour {
                 Cursor.visible = true;
                 
                 }
-
+            
+            }
+            else
+            {
+                return;
             }
         }
 
-        if(selectedObject != null) {
-            isPickedUp = true;
-            selectedObject.GetComponent<BoxCollider>().enabled = false;
-            RaycastHit hit3 =CastRay();
-            if (hit3.collider !=null && hit3.collider.tag == "Buildable"){
+        if(selectedObject != null && isPickedUp == true) 
+        {
+            hit = CastRay();
             Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
-            selectedObject.transform.position = new Vector3(worldPosition.x,
-                hit3.point.y+0.25f, worldPosition.z);
-            selectedObject.GetComponent<BoxCollider>().enabled = true;
+            selectedObject.transform.position = new Vector3(worldPosition.x,hit.point.y+0.25f, worldPosition.z);;
             }
             
         }
 
-    }
+    
 
-    private RaycastHit CastRay() {
+    private RaycastHit CastRay() 
+    {
         Vector3 screenMousePosFar = new Vector3(
             Input.mousePosition.x,
             Input.mousePosition.y,
@@ -71,5 +70,5 @@ public class Grabber : MonoBehaviour {
         Physics.Raycast(worldMousePosNear, worldMousePosFar - worldMousePosNear, out hit);
         return hit;
     }
-
 }
+

@@ -3,48 +3,81 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    [Header("GameObjects that correspond to Allies")]
-    public GameObject DefaultAlly;
-    public GameObject Lee;
-    public GameObject BigGuy;
-    public GameObject Gerad;
-    public GameObject Fifth;
+    PlacementHandler placement;
+    public GameObject currentUnit;
+    public GameObject Unit;
 
-    GameObject towerPool;
 
     void Start() 
     {
-        towerPool = new GameObject("TowerPool");
+        placement = FindObjectOfType<PlacementHandler>();
     }
 
-    public void PurchaseDefaultAlly()
+    public void SelectDefaultAlly()
     {
-        Debug.Log("Purchased Default Ally");
-        GameObject unit = DefaultAlly;
-        PurchaseUnit(unit);
+        if(placement.DefaultAlly.isLocked != true)
+        {
+        Debug.Log("Selected Default Ally");
+        placement.SpawnObject(placement.DefaultAlly);
+        }
+        else
+        {
+            DenyUser(placement.DefaultAlly.prefab.name);
+        }
     }
 
-    public void PurchaseLee()
+    public void SelectLee()
     {
-        Debug.Log("Purchased Lee");
+        if(placement.Lee.isLocked != true)
+        {
+        Debug.Log("Selected Lee");
+        placement.SpawnObject(placement.Lee);
+        }
+        else
+        {
+            DenyUser(placement.Lee.prefab.name);
+        }
     }
-    public void PurchaseBigGuy()
+    public void SelectBigGuy()
     {
-        Debug.Log("Purchased Big Guy");
+        if(placement.BigGuy.isLocked != true)
+        {
+        Debug.Log("Selected Big Guy");
+        placement.SpawnObject(placement.BigGuy);
+        }
+        else
+        {
+            DenyUser(placement.BigGuy.prefab.name);
+        }
     }
-    public void PurchaseGerad()
+    public void SelectGerad()
     {
-        Debug.Log("Purchased Gerad");
+        if(placement.Gared.isLocked != true)
+        {
+        Debug.Log("Selected Gerad");
+        placement.SpawnObject(placement.Gared);
+        }
+        else
+        {
+            DenyUser(placement.Gared.prefab.name);
+        }
     }
-    public void PurchaseFifthOption()
+    public void SelectFifthOption()
     {
-        Debug.Log("Purchased Fifth Option");
+        if(placement.Thomas.isLocked != true)
+        {
+        Debug.Log("Selected Fifth Option");
+        placement.SpawnObject(placement.Thomas);
+        }
+        else
+        {
+            DenyUser(placement.Thomas.prefab.name);
+        }
     }
 
-    public void PurchaseUnit(GameObject chosenUnit)
+    public void DenyUser(String towername)
     {
-        GameObject unit = (GameObject)Instantiate(DefaultAlly,Vector3.zero, Quaternion.identity, towerPool.transform);
-        
+        Debug.Log($"Cannot select {towername}, as it is currently locked.");
     }
-
+    
 }
