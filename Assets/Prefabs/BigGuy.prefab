@@ -47496,15 +47496,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoUI: {fileID: 0}
   particles: {fileID: 0}
-  range: 15
-  fireRate: 1
+  range: 8
+  fireRate: 0.5
   fireCountdown: 0
   targeting: 0
-  towerName: 0
+  towerName: 1
   enemyTag: enemy
   partToRotate: {fileID: 7783200389046833866}
   turnSpeed: 10
   bulletPreFab: {fileID: 6573754989439613905, guid: 152fdc8a45a8fcd43a9727cfe21de6ed, type: 3}
+  rockPreFab: {fileID: 0}
   firePoint: {fileID: 7358908800223838084}
   objectPool: {fileID: 0}
   isPanelOpen: 0

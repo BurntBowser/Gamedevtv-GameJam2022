@@ -17,12 +17,14 @@ public class EnemyController : MonoBehaviour
     public int lifeLost;
     public bool reachedEnd = false;
     PlayerStats stats;
+    private bool isAlive = true;
 
     void Awake() 
     {
         agent = GetComponent<NavMeshAgent>();
         agent.isStopped = isStopped;
         stats = FindObjectOfType<PlayerStats>();
+        agent.ResetPath();
     }
 
     void OnEnable() 
@@ -44,7 +46,20 @@ public class EnemyController : MonoBehaviour
         }
         if(TotalHealth<=0)
         {
+            isAlive= false;
             Destroy(gameObject);
+            return;
+        }
+        if(isAlive == true && agent.isStopped==true && Vector3.Distance(transform.position,agent.destination)>=1f)
+        {
+            Collider[] colliders = Physics.OverlapSphere(transform.position,3f);
+            foreach(Collider collider in colliders)
+            {
+                if(collider.tag == "Tower")
+                {
+                    Destroy(collider);
+                }
+            }
         }
 
     }

@@ -29,6 +29,10 @@ public class TowerController : MonoBehaviour
 
     PlacementHandler placement;
     UIController uiControl;
+    GameObject infoText;
+    GameObject infoPanel;
+
+    bool isClickedOn = false;
 
     public bool isPanelOpen = false;
 
@@ -38,6 +42,8 @@ public class TowerController : MonoBehaviour
         InvokeRepeating ("UpdateTarget", 0f, 0.5f);
         placement = FindObjectOfType<PlacementHandler>();
         objectPool = new GameObject("Object Pool");
+        infoText = GameObject.Find("Generic info for now");
+        infoPanel = GameObject.Find("UnitInfo");
     }
 
     void UpdateTarget()
@@ -93,6 +99,40 @@ public class TowerController : MonoBehaviour
 
     private void OnMouseDown() 
     {
+        Debug.Log("you clicked on this");
+        isClickedOn = !isClickedOn;
+        infoPanel.SetActive(false); 
+        if((int)towerName == 0 && isClickedOn == true)
+        {
+            infoText.GetComponent<TMPro.TextMeshProUGUI>().text = new string("this");
+            infoPanel.SetActive(true); 
+            return;
+        }
+        if((int)towerName == 1 && isClickedOn == true)
+        {
+            infoText.GetComponent<TMPro.TextMeshProUGUI>().text = new string("this");
+            infoPanel.SetActive(true); 
+            return;
+        }
+        if((int)towerName == 2 && isClickedOn == true)
+        {
+            infoText.GetComponent<TMPro.TextMeshProUGUI>().text = new string("this");
+            infoPanel.SetActive(true); 
+            return;
+        }
+        if((int)towerName == 3 && isClickedOn == true)
+        {
+            infoText.GetComponent<TMPro.TextMeshProUGUI>().text = new string("this");
+            infoPanel.SetActive(true); 
+            return;
+        }
+        if((int)towerName == 4 && isClickedOn == true)
+        {
+            infoText.GetComponent<TMPro.TextMeshProUGUI>().text = new string("this");
+            infoPanel.SetActive(true); 
+            return;
+        }
+
         
     }
     

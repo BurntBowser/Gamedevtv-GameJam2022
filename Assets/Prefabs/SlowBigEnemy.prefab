@@ -127,7 +127,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 3765416871659734740}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.001
+  m_Radius: 0.25
   m_Speed: 2
   m_Acceleration: 6
   avoidancePriority: 50
@@ -156,6 +156,10 @@ MonoBehaviour:
   endPos: {fileID: 0}
   checkStatus: 0
   isStopped: 0
+  TotalHealth: 100
+  reward: 20
+  lifeLost: 30
+  reachedEnd: 0
 --- !u!136 &1166272463956145530
 CapsuleCollider:
   m_ObjectHideFlags: 0

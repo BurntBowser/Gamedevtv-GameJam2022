@@ -1,17 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
     
-    public static int Money;
+    public int Money;
     public int Lives = 100;
+    public int startLives = 100;
     public int startMoney = 400;
+    public TMPro.TextMeshProUGUI livesText;
+    public TMPro.TextMeshProUGUI moneyText;
+    public GameObject MasterUI;
+    public GameObject gameOverUI;
 
     void Start()
     {
         Money = startMoney;
+        Lives = startLives;
+    }
+
+    void Update()
+    {
+        livesText.text = Lives.ToString();
+        moneyText.text =  Money.ToString();
+
+        if(Lives<=0)
+        {
+            MasterUI.SetActive(false);
+            gameOverUI.SetActive(true);
+        }
     }
 
     public void PayUp(int cost)

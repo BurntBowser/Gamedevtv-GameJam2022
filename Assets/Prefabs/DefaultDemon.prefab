@@ -792,8 +792,8 @@ MonoBehaviour:
   checkStatus: 0
   isStopped: 0
   TotalHealth: 10
-  reward: 10
-  lifeLost: 10
+  reward: 2
+  lifeLost: 1
   reachedEnd: 0
 --- !u!1 &7211371168608265283
 GameObject:
